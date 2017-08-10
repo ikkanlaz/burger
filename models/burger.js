@@ -3,22 +3,28 @@ var orm = require("../config/orm.js");
 
 var burger = {
   all: function(cb) {
-    orm.all("burger", function(res) {
+    orm.all("burgers", function(res) {
       cb(res);
     });
   },
   // The variables cols and vals are arrays.
   create: function(cols, vals, cb) {
-    orm.create("burger", cols, vals, function(res) {
+    orm.create("burgers", cols, vals, function(res) {
       cb(res);
     });
   },
-  update: function(objColVals, condition, cb) {
-    orm.update("burger", objColVals, condition, function(res) {
+  update: function(objKey, objValue, conditionKey, conditionValue, cb) {
+    orm.update("burgers", objKey, objValue, conditionKey, conditionValue, function(res) {
       cb(res);
     });
-  }
+  },
+  delete: function(col, colVal, cb) {
+    orm.delete("burgers", col, colVal, function(res) {
+      cb(res);
+    });
+  },
+
 };
 
-// Export the database functions for the controller (catsController.js).
+// Export the database functions for the controller (burgerController.js).
 module.exports = burger;

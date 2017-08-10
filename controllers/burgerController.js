@@ -18,9 +18,9 @@ router.get("/", function(req, res) {
 
 router.post("/", function(req, res) {
   burger.create([
-    "name", "sleepy"
+    "name", "devoured"
   ], [
-    req.body.name, req.body.sleepy
+    req.body.name, 0
   ], function() {
     res.redirect("/");
   });
@@ -31,9 +31,7 @@ router.put("/:id", function(req, res) {
 
   console.log("condition", condition);
 
-  burger.update({
-    sleepy: req.body.sleepy
-  }, condition, function() {
+  burger.update("devoured", 1, "id", req.params.id,  function() {
     res.redirect("/");
   });
 });
